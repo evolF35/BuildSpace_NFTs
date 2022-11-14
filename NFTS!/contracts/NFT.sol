@@ -13,7 +13,7 @@ contract NFT is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    string uri = "";
+    string[] public uri;
 
     string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
@@ -60,7 +60,7 @@ contract NFT is ERC721 {
     console.log(finalTokenUri);
     console.log("--------------------\n");
 
-    uri = finalTokenUri;
+        uri.push(finalTokenUri);
 
         _safeMint(msg.sender,newNFTID);
 
@@ -72,7 +72,7 @@ contract NFT is ERC721 {
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
         require(_exists(_tokenId),"what");
         console.log("An NFT w/ ID %s has been minted to %s", _tokenId, msg.sender);
-        return (uri);
+        return (uri[_tokenId]);
     }
 
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
