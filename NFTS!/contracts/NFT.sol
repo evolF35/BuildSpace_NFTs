@@ -21,6 +21,8 @@ contract NFT is ERC721 {
     string[] secondWords = ["tuna", "harvey", "singleton", "musk", "gates", "arnold","groves","elon","thomas","bryant","michael","chruchill","henry","rocket"];
     string[] thirdWords = ["moon", "boy", "edwin", "wright", "jobs", "serra","lucas","edison","alexander","kobe","jordan","plane","transistor","ford"];
 
+    event NFTMinted(address sender, uint256 tokenId);
+    
     constructor() ERC721("BOOKs","BKY"){
         console.log("NFTeez");
     }
@@ -67,6 +69,9 @@ contract NFT is ERC721 {
         tokenURI(newNFTID);
 
         _tokenIds.increment();
+
+    emit NFTMinted(msg.sender, newNFTID);
+
     }
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {

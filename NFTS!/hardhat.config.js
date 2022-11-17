@@ -1,6 +1,9 @@
+//const { ethers } = require("hardhat");
+
 require("@nomicfoundation/hardhat-toolbox");
 
 require('dotenv').config()
+require("@nomiclabs/hardhat-etherscan");
 
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -25,5 +28,8 @@ module.exports = {
        url: GoerliUrl,
        accounts: { mnemonic: process.env.MNEMONIC }
     }
+  },
+  etherscan:{
+    apiKey: `${process.env.ETHERSCAN_API_KEY}`
   }
 };
